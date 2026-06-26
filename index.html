@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vedant More | Career Guide Assistant</title>
+  <style>
+    :root {
+      --bg: #0f0f14;
+      --text: #f5f1eb;
+      --muted: #b3aeb5;
+      --accent: #8b5cf6;
+      --accent-dark: #6d28d9;
+      --line: #2a2431;
+      --card: #17141f;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0 30px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .hero {
+      padding: 24px 0 36px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin: 0 0 12px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      max-width: 680px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 1px solid var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 6px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 20px;
+      margin-top: 24px;
+      border-radius: 12px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 16px;
+      border-radius: 10px;
+    }
+
+    .feature h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .hint {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .assistant-glow {
+      animation: assistantGlow 1.2s ease !important;
+      box-shadow: 0 0 0 0px rgba(139, 92, 246, 0.7);
+    }
+
+    @keyframes assistantGlow {
+      0% { box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.7); }
+      50% { box-shadow: 0 0 0 20px rgba(139, 92, 246, 0); }
+      100% { box-shadow: 0 0 0 2px rgba(139, 92, 246, 0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0 50px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 800px) {
+      .features, .stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">Vedant More</div>
+      <a class="btn" href="#" onclick="openAssistant(event)">Open Assistant</a>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>This is my career guide assistant.</h1>
+        <p>I made this simple page to show my own assistant to others. It is designed to help people with career guidance, questions, and next-step support in a calm and clear way.</p>
+        <a class="btn" href="#" onclick="openAssistant(event)">Try It</a>
+        <p class="hint">The assistant appears in the bottom-right corner of the page.</p>
+        <p class="hint">For more information, check the GitHub PPT. I will share the GitHub repo link soon.</p>
+      </div>
+
+      <div class="panel">
+        <h2>What it helps with</h2>
+        <p>Career ideas, guidance, simple answers, and helpful support for visitors who want direction.</p>
+        <div class="stats">
+          <div class="stat">
+            <strong>Career</strong><br />Guidance
+          </div>
+          <div class="stat">
+            <strong>Simple</strong><br />Support
+          </div>
+          <div class="stat">
+            <strong>My</strong><br />Project
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="chat">
+      <div class="feature">
+        <h3>Career Guide</h3>
+        <p>This assistant is related to career guidance and helps visitors explore ideas in a simple way.</p>
+      </div>
+      <div class="feature">
+        <h3>Personal Project</h3>
+        <p>This page is made to present my own assistant clearly and directly.</p>
+      </div>
+      <div class="feature">
+        <h3>Minimal Style</h3>
+        <p>I kept the design clean and simple, without anything too modern or flashy.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Built by Vedant More<br />For more information, check the GitHub PPT. GitHub repo link will be added soon.
+  </footer>
+
+  <script>
+    let assistantInstance = null;
+    let assistantScriptLoaded = false;
+    let assistantRequested = false;
+
+    function findAssistantLauncher() {
+      return document.querySelector('.WACLauncher__ButtonContainer') ||
+        document.querySelector('[data-testid="launcher"]') ||
+        document.querySelector('[aria-label*="chat"], [aria-label*="Chat"]') ||
+        document.querySelector('button');
+    }
+
+    function triggerAssistantGlow() {
+      const launcher = findAssistantLauncher();
+      if (!launcher) {
+        setTimeout(triggerAssistantGlow, 300);
+        return;
+      }
+
+      launcher.classList.remove('assistant-glow');
+      void launcher.offsetWidth;
+      launcher.classList.add('assistant-glow');
+    }
+
+    function loadAssistant() {
+      if (assistantScriptLoaded) return;
+      assistantScriptLoaded = true;
+
+      const t = document.createElement('script');
+      t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    }
+    function openAssistant(event) {
+      if (event) event.preventDefault();
+      assistantRequested = true;
+
+      if (!assistantInstance) {
+        loadAssistant();
+        setTimeout(triggerAssistantGlow, 800);
+        return;
+      }
+
+      assistantInstance.render();
+      setTimeout(triggerAssistantGlow, 300);
+    }
+
+    window.watsonAssistantChatOptions = {
+      integrationID: "39f89117-d791-4e5b-8517-7ae06a75c8dd",
+      region: "https://integrations.us-south.assistant.watson.appdomain.cloud",
+      serviceInstanceID: "3f61bba9-bb2e-46e7-b0b3-6441dbdade9b",
+      onLoad: async (instance) => {
+        assistantInstance = instance;
+        if (assistantRequested) {
+          await instance.render();
+          setTimeout(triggerAssistantGlow, 300);
+        }
+      }
+    };
+  </script>
+</body>
+</html>
